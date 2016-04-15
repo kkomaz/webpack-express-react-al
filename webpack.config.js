@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: [
@@ -21,9 +22,13 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'sass'],
+        loaders: ['style', 'css', 'postcss', 'sass'],
       },
     ],
+  },
+  /*eslint-disable */
+  postcss: function() {
+    return [autoprefixer];
   },
   resolve: {
     extensions: ['', '.js', '.jsx'],
