@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 
-import App from './containers/app';
+import AppContainer from './containers/app_container';
 
 // Sass Stylesheet
 import './stylesheets/style.scss';
@@ -14,6 +14,6 @@ import './stylesheets/style.scss';
 const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
-  <App store={store} />,
+  <AppContainer store={store} />,
   document.querySelector('.container')
 );

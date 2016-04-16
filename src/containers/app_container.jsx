@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import { Router, browserHistory } from 'react-router';
+import routes from '../routes';
 
 const { object } = React.PropTypes;
 
-export default class App extends Component {
+class AppContainer extends Component {
   static propTypes = {
     store: object,
   }
@@ -11,11 +13,10 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={this.props.store}>
-        <div className="box">
-          <h1>Hello, world.</h1>
-          <h2>Hi hi</h2>
-        </div>
+        <Router history={browserHistory} routes={routes} />
       </Provider>
     );
   }
 }
+
+export default AppContainer;
