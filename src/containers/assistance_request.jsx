@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as createAssistService  from '../actions/index';
+import { createAssistService }  from '../actions/index';
 import * as ActionTypes from '../constants/action_types';
 import { reduxForm } from 'redux-form';
 import Service from './service';
@@ -10,12 +10,16 @@ export const fields = ['firstName', 'lastName', 'emailAddress',
 export const { func, object } = React.PropTypes;
 
 class AssistanceRequest extends Component {
+  onSubmit(inputProps) {
+    this.props.createAssistService(inputProps);
+  }
+
   render() {
-    const { fields: { firstName, lastName, emailAddress, serviceType, description, terms},
-            handleSubmit
+    const { fields: { firstName, lastName, emailAddress, serviceType, description, terms },
+            handleSubmit,
           } = this.props;
     return (
-      <form className="assistance-request" onSubmit={handleSubmit}>
+      <form className="assistance-request" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <div className="assistance-request__first-name">
           <input
             className="assistance-request__first-name-input"
@@ -23,6 +27,10 @@ class AssistanceRequest extends Component {
             placeholder="First Name"
             {...firstName}
           />
+
+          <div className="assistance-request__error-text">
+            {firstName.touched ? firstName.error : ''}
+          </div>
         </div>
 
         <div className="assistance-request__last-name">
@@ -32,6 +40,11 @@ class AssistanceRequest extends Component {
             placeholder="Last Name"
             {...lastName}
           />
+
+          <div className="assistance-request__error-text">
+            {lastName.touched ? lastName.error : ''}
+          </div>
+
         </div>
 
         <div className="assistance-request__email">
@@ -41,10 +54,18 @@ class AssistanceRequest extends Component {
             placeholder="Email Address"
             {...emailAddress}
           />
+
+          <div className="assistance-request__error-text">
+            {emailAddress.touched ? emailAddress.error : ''}
+          </div>
         </div>
 
         <div className="assistance-request__services">
           <Service serviceType={serviceType} />
+
+          <div className="assistance-request__error-text">
+            {serviceType.touched ? serviceType.error : ''}
+          </div>
         </div>
 
         <div className="assistance-request__description">
@@ -55,11 +76,19 @@ class AssistanceRequest extends Component {
             placeholder="Assistance request description"
             {...description}
           />
+
+          <div className="assistance-request__error-text">
+            {description.touched ? description.error : ''}
+          </div>
         </div>
 
-        <div className="assistance-request__acceptance">
+        <div className="assistance-request__terms">
           <input type="checkbox" {...terms } />
           I hearby accept the terms of service for THE NETWORK and the Privacy Policy.
+
+          <div className="assistance-request__error-text">
+            {terms.touched ? terms.error : ''}
+          </div>
         </div>
         <button type="submit" className="button">Submit</button>
       </form>
@@ -67,12 +96,46 @@ class AssistanceRequest extends Component {
   }
 }
 
+function validate(values) {
+  const errors = {};
+
+  if (!values.firstName) {
+    errors.firstName = 'required';
+  }
+
+  if (!values.lastName) {
+    errors.lastName = 'required';
+  }
+
+  if (!values.emailAddress) {
+    errors.emailAddress = 'required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.emailAddress)) {
+    errors.emailAddress = 'Invalid email address';
+  }
+
+  if (!values.serviceType) {
+    errors.serviceType = 'required';
+  }
+
+  if (!values.description) {
+    errors.description = 'required';
+  }
+
+  if (!values.terms) {
+    errors.terms = 'required';
+  }
+
+  return errors;
+}
+
 AssistanceRequest.propTypes = {
   fields: object,
   handleSubmit: func,
+  createAssistService: func,
 };
 
 export default reduxForm({
   form: 'AssistanceRequestForm',
   fields,
+  validate,
 }, null, { createAssistService })(AssistanceRequest);
