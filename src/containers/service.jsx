@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-const { array, func } = React.PropTypes;
+const { object, array, func } = React.PropTypes;
 
 class Services extends Component {
   componentWillMount() {
@@ -13,18 +13,19 @@ class Services extends Component {
     const { services } = this.props;
     return services.map((service) => {
       return (
-        <li className="service" key={service.id}>
+        <option className="service" key={service.id} value={service.id}>
           {service.display_name}
-        </li>
+        </option>
       );
     });
   }
 
   render() {
     return (
-      <ul className="services">
+      <select className="services" placeholder="Select Service Type" {...this.props.serviceType}>
+        <option value="" disabled>Select Service Type</option>
         {this.renderServices()}
-      </ul>
+      </select>
     );
   }
 }
@@ -36,6 +37,7 @@ function mapStateToProps(state) {
 }
 
 Services.propTypes = {
+  serviceType: object,
   services: array.isRequired,
   fetchServices: func.isRequired,
 };
