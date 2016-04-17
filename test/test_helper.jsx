@@ -5,9 +5,11 @@ import TestUtils from 'react-addons-test-utils';
 import ReactDOM from 'react-dom';
 import chai, { expect } from 'chai';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import reducers from '../src/reducers';
 import chaiJquery from 'chai-jquery';
+
+import promise from 'redux-promise';
 
 /**
  * Create a fake DOM created by jsdom library
@@ -28,8 +30,9 @@ const $ = _$(global.window);
  * @return {jQuery DOM} - creates Component via HTML
  */
 function renderComponent(ComponentClass, props = {}, state = {}) {
+  const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
   const componentInstance = TestUtils.renderIntoDocument(
-    <Provider store={createStore(reducers, state)}>
+    <Provider store={createStoreWithMiddleware(reducers, state)}>
       <ComponentClass { ...props } />
     </Provider>
   );

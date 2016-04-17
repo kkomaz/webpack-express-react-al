@@ -2,11 +2,7 @@ import React from 'react';
 
 const { object } = React.PropTypes;
 
-export default class App extends React.Component {
-  static propTypes = {
-    children: object,
-  }
-
+class App extends React.Component {
   render() {
     return (
       <div className="app-component">
@@ -15,3 +11,9 @@ export default class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  children: object,
+};
+
+export default App;
