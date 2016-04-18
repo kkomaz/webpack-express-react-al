@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const SERVICE_TYPES = 'service-types';
 const ASSISTANCE_REQUEST = 'assistance-requests';
-const ROOT_URL = 'http://192.168.99.100:49567/api';
+const ROOT_URL = 'http://localhost:49567/api';
 
 export function fetchServices() {
   const request = axios.get(`${ROOT_URL}/${SERVICE_TYPES}`);
