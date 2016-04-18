@@ -52,8 +52,14 @@ input[type="text"], select {
     text-align: right;
   }
 
+	&__clear {
+		@include size(120px, 25px);
+
+		float: left;
+	}
 	&__submit {
 		@include size(120px, 25px);
+
 		float: right;
 	}
 }

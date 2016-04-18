@@ -21,6 +21,7 @@ class AssistanceRequest extends Component {
   render() {
     const { fields: { firstName, lastName, emailAddress, serviceType, description, terms },
             handleSubmit,
+            resetForm,
           } = this.props;
     return (
       <div className="assistance-request">
@@ -100,6 +101,7 @@ class AssistanceRequest extends Component {
               {terms.touched ? terms.error : ''}
             </div>
           </div>
+          <button type="clear" className="button assistance-request__clear" onClick={resetForm}>Clear Fields</button>
           <button type="submit" className="button assistance-request__submit">Get Assistance</button>
         </form>
       </div>
