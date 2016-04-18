@@ -10,12 +10,26 @@ export const fields = ['firstName', 'lastName', 'emailAddress',
 export const { func, object } = React.PropTypes;
 
 class AssistanceRequest extends Component {
+  shouldComponentUpdate(nextProps) {
+    const emptyObject = Object.keys(nextProps.postResponse).length === 0;
+
+    if (emptyObject || (this.props.postResponse !== nextProps.postResponse)) {
+      return true;
+    }
+    return false;
+  }
+
   /**
    * on Submit calls the createAssistService Action and alerts to the user the current status
    */
   onSubmit(inputProps) {
     this.props.createAssistService(inputProps);
-    alert(this.props.postResponse.data.message);
+  }
+
+  generateFormAlert() {
+    if (this.props.postResponse.data) {
+      alert(this.props.postResponse.data.message);
+    }
   }
 
   render() {
@@ -23,6 +37,9 @@ class AssistanceRequest extends Component {
             handleSubmit,
             resetForm,
           } = this.props;
+
+    this.generateFormAlert();
+
     return (
       <div className="assistance-request">
         <form
@@ -153,7 +170,9 @@ function mapStateToProps(state) {
 AssistanceRequest.propTypes = {
   fields: object,
   handleSubmit: func,
+  resetForm: func,
   createAssistService: func,
+  postResponse: object,
 };
 
 export default reduxForm({
