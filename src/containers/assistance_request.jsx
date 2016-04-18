@@ -19,79 +19,86 @@ class AssistanceRequest extends Component {
             handleSubmit,
           } = this.props;
     return (
-      <form className="assistance-request" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-        <div className="assistance-request__first-name">
-          <input
-            className="assistance-request__first-name-input"
-            type="text"
-            placeholder="First Name"
-            {...firstName}
-          />
+      <div className="assistance-request">
+        <form
+          className="assistance-request__form"
+          onSubmit={handleSubmit(this.onSubmit.bind(this))}
+        >
+          <h2 className="assistance-request__title">New Assistance Request</h2>
 
-          <div className="assistance-request__error-text">
-            {firstName.touched ? firstName.error : ''}
-          </div>
-        </div>
+          <div className="assistance-request__first-name">
+            <input
+              className="assistance-request__first-name-input"
+              type="text"
+              placeholder="First Name"
+              {...firstName}
+            />
 
-        <div className="assistance-request__last-name">
-          <input
-            className="assistance-request__last-name-input"
-            type="text"
-            placeholder="Last Name"
-            {...lastName}
-          />
-
-          <div className="assistance-request__error-text">
-            {lastName.touched ? lastName.error : ''}
+            <div className="assistance-request__error-text">
+              {firstName.touched ? firstName.error : ''}
+            </div>
           </div>
 
-        </div>
+          <div className="assistance-request__last-name">
+            <input
+              className="assistance-request__last-name-input"
+              type="text"
+              placeholder="Last Name"
+              {...lastName}
+            />
 
-        <div className="assistance-request__email">
-          <input
-            className="assistance-request__email-input"
-            type="text"
-            placeholder="Email Address"
-            {...emailAddress}
-          />
+            <div className="assistance-request__error-text">
+              {lastName.touched ? lastName.error : ''}
+            </div>
 
-          <div className="assistance-request__error-text">
-            {emailAddress.touched ? emailAddress.error : ''}
           </div>
-        </div>
 
-        <div className="assistance-request__services">
-          <Service serviceType={serviceType} />
+          <div className="assistance-request__email">
+            <input
+              className="assistance-request__email-input"
+              type="text"
+              placeholder="Email Address"
+              {...emailAddress}
+            />
 
-          <div className="assistance-request__error-text">
-            {serviceType.touched ? serviceType.error : ''}
+            <div className="assistance-request__error-text">
+              {emailAddress.touched ? emailAddress.error : ''}
+            </div>
           </div>
-        </div>
 
-        <div className="assistance-request__description">
-          <textarea
-            className="assistance-request__description-text"
-            cols="30"
-            rows="10"
-            placeholder="Assistance request description"
-            {...description}
-          />
+          <div className="assistance-request__services">
+            <Service serviceType={serviceType} />
 
-          <div className="assistance-request__error-text">
-            {description.touched ? description.error : ''}
+            <div className="assistance-request__error-text">
+              {serviceType.touched ? serviceType.error : ''}
+            </div>
           </div>
-        </div>
 
-        <div className="assistance-request__terms">
-          <input type="checkbox" {...terms } />
-          I hearby accept the terms of service for THE NETWORK and the Privacy Policy.
+          <div className="assistance-request__description">
+            <textarea
+              className="assistance-request__description-text"
+              cols="30"
+              rows="10"
+              placeholder="Assistance request description"
+              {...description}
+            />
 
-          <div className="assistance-request__error-text">
-            {terms.touched ? terms.error : ''}
+            <div className="assistance-request__error-text">
+              {description.touched ? description.error : ''}
+            </div>
           </div>
-        </div>
-        <button type="submit" className="button">Submit</button>
-      </form>
+
+          <div className="assistance-request__terms">
+            <input type="checkbox" {...terms } />
+            I hearby accept the terms of service for THE NETWORK and the Privacy Policy.
+
+            <div className="assistance-request__error-text">
+              {terms.touched ? terms.error : ''}
+            </div>
+          </div>
+          <button type="submit" className="button">Get Assistance</button>
+        </form>
+      </div>
     );
   }
 }

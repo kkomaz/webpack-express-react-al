@@ -1,3 +1,54 @@
+// Variables
+@import './variables/colors';
+
+//Mixins
+@import './mixins/position';
+@import './mixins/size';
+
+html, body {
+	font-family: 'Open Sans', sans-serif;
+}
+
 body {
   background-color: gray;
+}
+
+input[type="text"], textarea, select {
+  @include size(100%);
+
+	font-size: 1em;
+}
+
+input[type="text"], select {
+  height: 2em;
+}
+
+
+.button {
+  background: $white;
+}
+
+.assistance-request {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__title{
+    border-bottom: 1px solid $black;
+
+  }
+
+  &__form {
+    background: $white;
+    border: 1px solid $black;
+    padding: 1em 2em;
+  }
+
+  &__error-text {
+    color: $red;
+    font-size: 1em;
+    height: 20px;
+    margin-bottom: .5em;
+    text-align: right;
+  }
 }
