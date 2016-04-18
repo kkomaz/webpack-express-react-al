@@ -10,6 +10,9 @@ export const fields = ['firstName', 'lastName', 'emailAddress',
 export const { func, object } = React.PropTypes;
 
 class AssistanceRequest extends Component {
+  /**
+   * on Submit calls the createAssistService Action and alerts to the user the current status
+   */
   onSubmit(inputProps) {
     this.props.createAssistService(inputProps);
     alert(this.props.postResponse.data.message);
@@ -104,6 +107,9 @@ class AssistanceRequest extends Component {
   }
 }
 
+/**
+ * Validates the fields (built in with redux-form)
+ */
 function validate(values) {
   const errors = {};
 

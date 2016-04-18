@@ -9,6 +9,10 @@ class Services extends Component {
     this.props.fetchServices();
   }
 
+  /**
+   * All service option elements created
+   * @return { HTML element } - <option>
+   */
   renderServices() {
     const { services } = this.props;
     return services.map((service) => {
