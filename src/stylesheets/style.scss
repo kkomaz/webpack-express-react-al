@@ -51,4 +51,9 @@ input[type="text"], select {
     margin-bottom: .5em;
     text-align: right;
   }
+
+	&__submit {
+		@include size(120px, 25px);
+		float: right;
+	}
 }

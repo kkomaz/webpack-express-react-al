@@ -97,7 +97,7 @@ class AssistanceRequest extends Component {
               {terms.touched ? terms.error : ''}
             </div>
           </div>
-          <button type="submit" className="button">Get Assistance</button>
+          <button type="submit" className="button assistance-request__submit">Get Assistance</button>
         </form>
       </div>
     );
