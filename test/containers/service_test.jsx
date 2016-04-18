@@ -11,4 +11,8 @@ describe('Service', () => {
   it('renders the parent div', () => {
     expect(component).to.have.class('services');
   });
+
+  it('defaults to the boilerplate text', () => {
+    expect(component.find('.service')).to.have.text('Select Service Type');
+  });
 });

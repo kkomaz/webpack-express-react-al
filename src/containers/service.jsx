@@ -27,7 +27,7 @@ class Services extends Component {
   render() {
     return (
       <select className="services" placeholder="Select Service Type" {...this.props.serviceType}>
-        <option value="" disabled>Select Service Type</option>
+        <option className="service" value="select-service-type" disabled>Select Service Type</option>
         {this.renderServices()}
       </select>
     );
