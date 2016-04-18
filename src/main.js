@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { createStore, applyMiddleware } from 'redux';
-import promise from 'redux-promise';
+import thunk from 'redux-thunk';
 import reducers from './reducers';
 
 import AppContainer from './containers/app_container';
@@ -11,7 +11,7 @@ import AppContainer from './containers/app_container';
 import './stylesheets/style.scss';
 
 
-const store = applyMiddleware(promise)(createStore);
+const store = applyMiddleware(thunk)(createStore);
 
 ReactDOM.render(
   <AppContainer store={store(reducers)} />,

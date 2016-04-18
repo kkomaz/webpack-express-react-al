@@ -12,6 +12,7 @@ export const { func, object } = React.PropTypes;
 class AssistanceRequest extends Component {
   onSubmit(inputProps) {
     this.props.createAssistService(inputProps);
+    alert(this.props.postResponse.data.message);
   }
 
   render() {
@@ -135,6 +136,12 @@ function validate(values) {
   return errors;
 }
 
+function mapStateToProps(state) {
+  return {
+    postResponse: state.assistantRequestReducer.response,
+  };
+}
+
 AssistanceRequest.propTypes = {
   fields: object,
   handleSubmit: func,
@@ -145,4 +152,4 @@ export default reduxForm({
   form: 'AssistanceRequestForm',
   fields,
   validate,
-}, null, { createAssistService })(AssistanceRequest);
+}, mapStateToProps, { createAssistService })(AssistanceRequest);
