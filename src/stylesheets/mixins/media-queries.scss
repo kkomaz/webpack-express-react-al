@@ -1,0 +1,17 @@
+@mixin desktop {
+  @include susy-breakpoint($desktop, $susy) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @include susy-breakpoint($tablet, $susy-tablet) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @include susy-breakpoint($phone, $susy-phone) {
+    @content;
+  }
+}

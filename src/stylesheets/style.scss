@@ -1,12 +1,20 @@
+// Globals
+@import '~susy/sass/susy';
+
+// Variables
+@import './variables/breakpoints';
+@import './variables/colors';
+@import './variables/grid-settings';
+
+// Mixins
+@import './mixins/position';
+@import './mixins/size';
+@import './mixins/media-queries';
+
+// Layouts
+@import './layouts/error-page';
+@import './layouts/welcome-page';
+
 body {
   background-color: gray;
-}
-
-.box {
-  height: 200px;
-  width: 200px;
-  border: 1px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

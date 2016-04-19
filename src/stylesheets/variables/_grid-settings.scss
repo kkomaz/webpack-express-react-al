@@ -1,0 +1,19 @@
+$susy: (
+  columns: 12
+);
+
+$susy-tablet: (
+  columns: 12
+);
+
+$susy-phone: (
+  columns: 4
+);
+
+$susy-debug: (
+  debug: (
+    image: show-columns,
+    color: rgba(153,255,153, 0.2),
+    output: background,
+  )
+);
