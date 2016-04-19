@@ -16,4 +16,12 @@ describe('Index', () => {
   it('shows the service list', () => {
     expect(component.find('.services')).to.exist;
   });
+
+  it('contains the assistance request component', () => {
+    expect(component.find('.assistance-request')).to.exist;
+  });
+
+  it('contains the error component', () => {
+    expect(component.find('.error-container')).to.exist;
+  });
 });

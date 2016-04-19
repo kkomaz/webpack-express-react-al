@@ -6,7 +6,7 @@
 @import './mixins/size';
 
 html, body {
-	font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body {
@@ -16,7 +16,7 @@ body {
 input[type="text"], textarea, select {
   @include size(100%);
 
-	font-size: 1em;
+  font-size: 1em;
 }
 
 input[type="text"], select {
@@ -53,13 +53,21 @@ input[type="text"], select {
   }
 
 	&__clear {
-		@include size(120px, 25px);
+    @include size(120px, 25px);
 
-		float: left;
+    float: left;
 	}
+
 	&__submit {
-		@include size(120px, 25px);
+    @include size(120px, 25px);
 
-		float: right;
+    float: right;
 	}
+}
+
+.error-container {
+  &__message {
+  	font-size: 25px;
+  	text-align: center;
+  }
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { createAssistService }  from '../actions/index';
-import * as ActionTypes from '../constants/action_types';
+import { createAssistService } from '../actions/index';
 import { reduxForm } from 'redux-form';
 import Service from './service';
 
@@ -10,15 +9,6 @@ export const fields = ['firstName', 'lastName', 'emailAddress',
 export const { func, object } = React.PropTypes;
 
 class AssistanceRequest extends Component {
-  shouldComponentUpdate(nextProps) {
-    const emptyObject = Object.keys(nextProps.postResponse).length === 0;
-
-    if (emptyObject || (this.props.postResponse !== nextProps.postResponse)) {
-      return true;
-    }
-    return false;
-  }
-
   /**
    * on Submit calls the createAssistService Action and alerts to the user the current status
    */
@@ -26,19 +16,11 @@ class AssistanceRequest extends Component {
     this.props.createAssistService(inputProps);
   }
 
-  generateFormAlert() {
-    if (this.props.postResponse.data) {
-      alert(this.props.postResponse.data.message);
-    }
-  }
-
   render() {
     const { fields: { firstName, lastName, emailAddress, serviceType, description, terms },
             handleSubmit,
             resetForm,
           } = this.props;
-
-    this.generateFormAlert();
 
     return (
       <div className="assistance-request">
@@ -161,12 +143,6 @@ function validate(values) {
   return errors;
 }
 
-function mapStateToProps(state) {
-  return {
-    postResponse: state.assistantRequestReducer.response,
-  };
-}
-
 AssistanceRequest.propTypes = {
   fields: object,
   handleSubmit: func,
@@ -179,4 +155,4 @@ export default reduxForm({
   form: 'AssistanceRequestForm',
   fields,
   validate,
-}, mapStateToProps, { createAssistService })(AssistanceRequest);
+}, null, { createAssistService })(AssistanceRequest);
