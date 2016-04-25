@@ -1,3 +1,31 @@
 .form-submission {
+  @include size(300px);
+
+  align-items: center;
+  background-color: white;
+  flex-direction: column;
+  justify-content: center;
   border: 1px solid black;
+  display: flex;
+
+  &__title {
+    width: 90%;
+  }
+
+  &__release-year {
+    width: 90%;
+  }
+
+  &__director {
+    width: 90%;
+  }
+
+  &__genre {
+    width: 90%;
+  }
+
+  input {
+    margin-bottom: 10px;
+    width: 100%;
+  }
 }

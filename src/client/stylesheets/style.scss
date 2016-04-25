@@ -16,6 +16,7 @@
 @import './layouts/welcome-page';
 @import './layouts/form-submission';
 
-body {
+html, body {
   background-color: gray;
+  font-family: 'Open Sans', sans-serif;
 }
