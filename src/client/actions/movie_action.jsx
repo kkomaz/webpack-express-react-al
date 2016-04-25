@@ -13,6 +13,23 @@ export function fetchMovies() {
   };
 }
 
+export function createMovie(props) {
+  const url = `${ROOT_URL}/movies`;
+  const requestParams = props;
+
+  return function(dispatch) {
+    axios.post(url, requestParams)
+    .then((response) => {
+      console.log('success');
+      dispatch(createMovieSuccess(response));
+    })
+    .catch((error) => {
+      console.log('failure');
+      dispatch(createMovieFail(error));
+    })
+  }
+}
+
 /**
  * Helper Functions
  */
@@ -20,6 +37,13 @@ export function fetchMovies() {
 function fetchMoviesSucess(response) {
   return {
     type: ActionTypes.FETCH_MOVIES,
+    payload: response,
+  };
+}
+
+function createMovieSuccess(response) {
+  return {
+    type: ActionTypes.CREATE_MOVIE_SUCCESS,
     payload: response,
   };
 }

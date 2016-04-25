@@ -21,8 +21,10 @@ class MoviesIndex extends Component {
 
   render() {
     return (
-      <div className="movie-index">
-        <Form />
+      <div className="movies">
+        <div className="movies__form">
+          <Form />
+        </div>
         {this.renderMovies()}
       </div>
     );
