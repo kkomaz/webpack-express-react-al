@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 
 // Local exports
 const config = require('./config/config');
@@ -11,8 +12,14 @@ const serverPort = isDeveloping ? config.SERVER_PORT : process.env.PORT;
 const app = express();
 
 // =====================================================================//
+// API routes
+// =====================================================================//
+const movies = require('./src/server/routes/movies');
+
+// =====================================================================//
 //  Middleware
 // =====================================================================//
+app.use(morgan('combined'));
 app.use((req, res, next) => {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,24 +39,18 @@ app.use((req, res, next) => {
 });
 
 // =====================================================================//
+// Body Parser
+// =====================================================================//
+app.use(bodyParser.json({ type: '*/*' }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/api', [movies]);
+
+// =====================================================================//
 // mongoose connection
 // =====================================================================//
 const dbName = 'movieDB';
 const connectionString='mongodb://127.0.0.1:27017/'+ dbName;
 mongoose.connect(connectionString);
-
-// =====================================================================//
-// API routes
-// =====================================================================//
-const movies = require('./src/server/routes/movies');
-
-// =====================================================================//
-// Body Parser
-// =====================================================================//
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/api', [movies]);
-
 
 // =====================================================================//
 //  Express App
