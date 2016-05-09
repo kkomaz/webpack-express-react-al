@@ -1,6 +1,13 @@
+const jwt = require('jwt-simple');
+const config = require('../../../config');
 const User = require('../models/user');
 const express = require('express');
 const router = express.Router();
+
+function tokenForUser(user) {
+  const timestamp = new Date().getTime();
+  return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+}
 
 router.route('/signup')
   .post((req, res, next) => {
@@ -31,7 +38,7 @@ router.route('/signup')
       user.save(function(err) {
         if (err) { return next(err); }
 
-        res.json({ success: true });
+        res.json({ token: tokenForUser(user) });
       });
       //  respond to request with the indicator user was created
     });
